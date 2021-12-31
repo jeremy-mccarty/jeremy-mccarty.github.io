@@ -1,8 +1,12 @@
 ---
 permalink: /about/
-title: "About"
+title: "About Me"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+Hello there, my name is Jeremy McCarty!
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+I am a Technical UI Designer at [Bungie](https://www.bungie.net/ "Bungie") working on [Destiny 2](https://www.bungie.net/7/en/Destiny/NewLight "Destiny 2"). Previously: Technical UI Designer at [Midwinter Entertainment](https://midwinter.net/ "Midwinter Entertainment") on [Scavengers](https://www.playscavengers.com/en "Scavengers").
+
+I stumbled upon my love for making games in 2013 and decided to move out to Washington to pursue that dream. In 2019, I graduated with a Bachelor of Science in Computer Science and Game Design degree from DigiPen Institute of Technology with a focus on technical design and production.
+
+When I am not playing or working on games, I am likely skating, snowboarding, rock climbing, or enjoying the beautiful state of Washington with my wife and our two pugs.
