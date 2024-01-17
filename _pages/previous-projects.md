@@ -3,7 +3,7 @@ permalink: /previous-projects/
 title: "Previous Projects"
 ---
 
-![The Scavengers logo](assets/images/scavengers/scavengers_logo_180306.png "Scavengers")
+![The Scavengers logo](/assets/images/scavengers/scavengers_logo_180306.png "Scavengers")
 
 # Scavengers
 Scavengers was a free-to-play action shooter where squads of three compete to survive and dominate in a hybrid of sandbox-style PVE and class-based PVP.
