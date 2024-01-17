@@ -3,4 +3,4 @@ permalink: /current-projects/
 title: "Current Projects"
 ---
 
-{% include figure image_path="https://mmistakes.github.io/minimal-mistakes/assets/images/unsplash-image-10.jpg" alt="this is a placeholder image" caption="This is a figure caption." %}
+{% include figure image_path="assets\images\destiny-2\tfs\d2_TFS_logo_LOC_horizontal_en-EN.png" alt="The Destiny 2 Final Shape logo" caption="Destiny 2: The Final Shape" %}
