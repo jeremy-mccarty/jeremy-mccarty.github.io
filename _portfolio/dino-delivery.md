@@ -2,7 +2,7 @@
 title: "Dino Delivery"
 excerpt: "Dino Delivery is a third person adventure/puzzle game about a boy and his dinosaur best friend and their quest to recover the lost mail of their town."
 header:
-    teaser: assets/images/dino-delivery/Dino_Delivery_Logo_01.png
+    teaser: assets/images/dino-delivery/Dino_Delivery_Logo_01_teaser.png
 sidebar:
   - title: "Role"
     text: "Lead Designer and Producer"
