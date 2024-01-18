@@ -1,23 +1,11 @@
 ---
-layout: single
 permalink: /previous-projects/
 title: "Previous Projects"
-author_profile: true
-classes: wide
+layout: collection
 collection: portfolio
-
-feature_row0:
-  - image_path: assets/images/scavengers/scavengers_logo_180306.png
-    alt: "The Scavengers logo"
-    title: "Scavengers"
-    text: "Scavengers was a free-to-play action shooter where squads of three compete to survive and dominate in a hybrid of sandbox-style PVE and class-based PVP."
+entries_layout: grid
+classes: wide
 ---
-
-{% include feature_row id="feature_row0" type="left" %}
-
-![The Scavengers logo](/assets/images/scavengers/scavengers_logo_180306.png "Scavengers")<br>
-## Scavengers
-Scavengers was a free-to-play action shooter where squads of three compete to survive and dominate in a hybrid of sandbox-style PVE and class-based PVP.
 
 ---
 
