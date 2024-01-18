@@ -103,6 +103,19 @@ defaults:
     values:
       layout: single
       author_profile: true
+  # _portfolio
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: single
+      author_profile: true
+      share: true
+
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
 
 category_archive:
   type: liquid
