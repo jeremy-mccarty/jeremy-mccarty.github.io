@@ -11,14 +11,6 @@ feature_row0:
     alt: "The Scavengers logo"
     title: "Scavengers"
     text: "Scavengers was a free-to-play action shooter where squads of three compete to survive and dominate in a hybrid of sandbox-style PVE and class-based PVP."
-    btn_label: "Code"
-    btn_class: "btn--primary"
-    tags:
-        - Unreal Engine
-        - Technical UI Design
-        - C++
-        - Atlassian Suite
-        - Adobe Creative Suite
 ---
 
 {% include feature_row id="feature_row0" type="left" %}
