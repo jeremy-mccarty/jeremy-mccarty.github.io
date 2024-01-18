@@ -2,7 +2,8 @@
 permalink: /current-projects/
 title: "Current Projects"
 ---
-## Destiny 2
+## Destiny 2  
+![The Destiny 2 logo](/assets/images/destiny-2/destiny2_logo_en_light-2.png "Destiny 2")  
 Destiny 2 is an action MMO with a single evolving world that you and your friends can join anytime, anywhere, absolutely free. 
 
 <i class="fab fa-steam"></i> [Find Destiny 2 on Steam&reg;!](https://store.steampowered.com/app/1085660/Destiny_2/)
