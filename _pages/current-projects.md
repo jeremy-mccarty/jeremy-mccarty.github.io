@@ -2,7 +2,7 @@
 permalink: /current-projects/
 title: "Current Projects"
 ---
-![The Destiny 2 logo](/assets/images/destiny-2/destiny2_logo_en_light-2.png "Destiny 2")<br><br>
+![The Destiny 2 logo](/assets/images/destiny-2/destiny2_logo_en_light-2.png "Destiny 2")<br>
 ## Destiny 2
 Destiny 2 is an action MMO with a single evolving world that you and your friends can join anytime, anywhere, absolutely free. 
 
