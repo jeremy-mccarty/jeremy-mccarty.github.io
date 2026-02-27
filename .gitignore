@@ -1,24 +1,33 @@
-# build output
-dist/
-# generated types
-.astro/
-
-# dependencies
+# Node.js
 node_modules/
-
-# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
+# Build output
+dist/
+.astro/
+.cache/
 
-# environment variables
+# Env files
 .env
-.env.production
+.env.*.local
 
-# macOS-specific files
+# OS files
 .DS_Store
+Thumbs.db
 
-# jetbrains setting folder
+# IDE files
+.vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
+
+# Optional: GitHub Pages deploy branch files
+gh-pages/
+
+# Logs
+*.log
