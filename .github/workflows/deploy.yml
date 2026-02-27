@@ -3,37 +3,31 @@ name: Build and Deploy Astro Portfolio
 on:
   push:
     branches:
-      - main  # Run workflow on pushes to main
+      - main  # Trigger on pushes to main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '24'  # matches your local Node.js v24.14.0
+          node-version: '24'
           cache: 'npm'
 
-      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # 4️⃣ Build the site
       - name: Build Astro site
         run: npm run build
 
-      # 5️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v7
+        uses: peaceiris/actions-gh-pages@v6.2.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          # optional: set branch name
           publish_branch: gh-pages
