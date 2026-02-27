@@ -1,9 +1,0 @@
-main:
-  - title: "Current Projects"
-    url: /current-projects/
-  - title: "Previous Projects"
-    url: /previous-projects/
-  - title: "Resume"
-    url: /resume/
-  - title: "About"
-    url: /about/
