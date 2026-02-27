@@ -1,8 +1,6 @@
 {
   "name": "former-fireball",
   "version": "1.0.0",
-  "private": true,
-  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -13,12 +11,12 @@
     "full-deploy": "npm run clean && npm install && npm run build && npm run push-source && npm run deploy"
   },
   "devDependencies": {
-    "astro": "^3.10.2",
-    "gh-pages": "^5.1.0",
-    "tailwindcss": "^4.2.1",
-    "@tailwindcss/postcss": "^2.1.0",
-    "postcss": "^8.4.36",
-    "rss-parser": "^3.12.0"
+    "astro": "^5.13.5",
+    "autoprefixer": "^10.4.14",
+    "gh-pages": "^6.3.0",
+    "tailwindcss": "^4.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "rss-parser": "^3.13.0"
+  }
 }
