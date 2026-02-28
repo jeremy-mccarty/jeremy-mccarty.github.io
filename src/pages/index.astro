@@ -1,30 +1,52 @@
 ---
-import '../styles/global.css';
-import Parser from 'rss-parser';
+import "../styles/global.css";
+import Parser from "rss-parser";
 
 // --- GitHub Repos ---
 const githubUsername = import.meta.env.GH_USERNAME;
-const githubToken = import.meta.env.GITHUB_TOKEN;
+const githubToken = import.meta.env.GH_API_TOKEN;
 
 let featuredProjects = [];
 
 try {
-  const res = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`, {
-    headers: githubToken ? { Authorization: `token ${githubToken}` } : {}
-  });
+  const res = await fetch(
+    `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`,
+    {
+      headers: githubToken ? { Authorization: `token ${githubToken}` } : {},
+    },
+  );
   const data = await res.json();
 
-  featuredProjects = data.map(repo => ({
+  if (!Array.isArray(data)) {
+    console.error("GitHub API did not return an array:", data);
+    featuredProjects = [];
+  } else {
+    featuredProjects = data.map((repo) => ({
+      title: repo.name,
+      description: repo.description || "No description",
+      link: repo.html_url,
+      image: "/images/portfolio.png",
+      stars: repo.stargazers_count,
+      forks: repo.forks_count,
+      updated: new Date(repo.updated_at).toLocaleDateString(),
+    }));
+  }
+
+  console.log("Username:", githubUsername);
+  console.log("Token exists:", !!githubToken);
+  console.log("Response status:", res.status);
+
+  featuredProjects = data.map((repo) => ({
     title: repo.name,
-    description: repo.description || 'No description',
+    description: repo.description || "No description",
     link: repo.html_url,
-    image: '/images/portfolio.png', // placeholder
+    image: "/images/portfolio.png", // placeholder
     stars: repo.stargazers_count,
     forks: repo.forks_count,
-    updated: new Date(repo.updated_at).toLocaleDateString()
+    updated: new Date(repo.updated_at).toLocaleDateString(),
   }));
 } catch (err) {
-  console.error('Failed to fetch GitHub repos:', err);
+  console.error("Failed to fetch GitHub repos:", err);
 }
 
 // --- ArtStation feed ---
@@ -34,19 +56,20 @@ let artstationWorks = [];
 
 try {
   const feed = await parser.parseURL(artstationFeedUrl);
-  artstationWorks = feed.items.map(item => ({
+  artstationWorks = feed.items.map((item) => ({
     title: item.title,
     link: item.link,
-    image: item.enclosure?.url || '/images/artstation-preview.png'
+    image: item.enclosure?.url || "/images/artstation-preview.png",
   }));
 } catch (err) {
-  console.error('Failed to fetch ArtStation feed:', err);
+  console.error("Failed to fetch ArtStation feed:", err);
 }
 
 // --- Carousel state ---
 let currentSlide = 0;
 const featuredForCarousel = featuredProjects.slice(0, 3); // top 3 projects
 ---
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -54,20 +77,22 @@ const featuredForCarousel = featuredProjects.slice(0, 3); // top 3 projects
     <title>Jeremy McCarty's Portfolio</title>
     <script type="module">
       let currentSlide = 0;
-      const totalSlides = document.querySelectorAll('.carousel-slide').length;
+      const totalSlides = document.querySelectorAll(".carousel-slide").length;
 
       function nextSlide() {
-        document.querySelectorAll('.carousel-slide').forEach((slide, i) => {
-          slide.classList.add('hidden');
-          if (i === (currentSlide + 1) % totalSlides) slide.classList.remove('hidden');
+        document.querySelectorAll(".carousel-slide").forEach((slide, i) => {
+          slide.classList.add("hidden");
+          if (i === (currentSlide + 1) % totalSlides)
+            slide.classList.remove("hidden");
         });
         currentSlide = (currentSlide + 1) % totalSlides;
       }
 
       function prevSlide() {
-        document.querySelectorAll('.carousel-slide').forEach((slide, i) => {
-          slide.classList.add('hidden');
-          if (i === (currentSlide - 1 + totalSlides) % totalSlides) slide.classList.remove('hidden');
+        document.querySelectorAll(".carousel-slide").forEach((slide, i) => {
+          slide.classList.add("hidden");
+          if (i === (currentSlide - 1 + totalSlides) % totalSlides)
+            slide.classList.remove("hidden");
         });
         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
       }
@@ -76,73 +101,124 @@ const featuredForCarousel = featuredProjects.slice(0, 3); // top 3 projects
     </script>
   </head>
   <body class="bg-darkbg text-text">
-
     <!-- Hero Section -->
-    <div class="min-h-screen flex flex-col justify-center items-center text-center px-4">
-      <h1 class="text-6xl md:text-7xl font-heading text-primary mb-4 animate-fadeIn">Jeremy McCarty</h1>
-      <p class="text-xl md:text-2xl mb-8">Visual & Dev Portfolio | ArtStation + GitHub Projects</p>
-      <a href="#projects" class="px-6 py-3 bg-highlight text-darkbg font-bold rounded-lg hover:scale-105 transition-transform">
+    <div
+      class="min-h-screen flex flex-col justify-center items-center text-center px-4"
+    >
+      <h1
+        class="text-6xl md:text-7xl font-heading text-primary mb-4 animate-fadeIn"
+      >
+        Jeremy McCarty
+      </h1>
+      <p class="text-xl md:text-2xl mb-8">
+        Visual & Dev Portfolio | ArtStation + GitHub Projects
+      </p>
+      <a
+        href="#projects"
+        class="px-6 py-3 bg-highlight text-darkbg font-bold rounded-lg hover:scale-105 transition-transform"
+      >
         View Projects
       </a>
     </div>
 
     <!-- Featured Project Carousel -->
     <section class="py-20 max-w-5xl mx-auto px-6">
-      <h2 class="text-4xl font-heading text-primary mb-12 text-center">Featured Projects</h2>
+      <h2 class="text-4xl font-heading text-primary mb-12 text-center">
+        Featured Projects
+      </h2>
       <div class="relative">
-        {featuredForCarousel.map((project, i) => (
-          <div class={`carousel-slide ${i !== 0 ? 'hidden' : ''} bg-secondary rounded-xl shadow-lg overflow-hidden`}>
-            <img src={project.image} alt={project.title} class="w-full h-64 object-cover"/>
-            <div class="p-5">
-              <h3 class="text-3xl font-heading text-text mb-2">{project.title}</h3>
-              <p class="text-text mb-4">{project.description}</p>
-              <div class="flex justify-between text-sm text-text">
-                <span>⭐ {project.stars}</span>
-                <span>🍴 {project.forks}</span>
-                <span>🕒 {project.updated}</span>
+        {
+          featuredForCarousel.map((project, i) => (
+            <div
+              class={`carousel-slide ${i !== 0 ? "hidden" : ""} bg-secondary rounded-xl shadow-lg overflow-hidden`}
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                class="w-full h-64 object-cover"
+              />
+              <div class="p-5">
+                <h3 class="text-3xl font-heading text-text mb-2">
+                  {project.title}
+                </h3>
+                <p class="text-text mb-4">{project.description}</p>
+                <div class="flex justify-between text-sm text-text">
+                  <span>⭐ {project.stars}</span>
+                  <span>🍴 {project.forks}</span>
+                  <span>🕒 {project.updated}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
 
         <!-- Carousel Buttons -->
-        <button onclick="prevSlide()" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-primary text-darkbg px-3 py-1 rounded-lg hover:scale-105">◀</button>
-        <button onclick="nextSlide()" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-primary text-darkbg px-3 py-1 rounded-lg hover:scale-105">▶</button>
+        <button
+          onclick="prevSlide()"
+          class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-primary text-darkbg px-3 py-1 rounded-lg hover:scale-105"
+          >◀</button
+        >
+        <button
+          onclick="nextSlide()"
+          class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-primary text-darkbg px-3 py-1 rounded-lg hover:scale-105"
+          >▶</button
+        >
       </div>
     </section>
 
     <!-- All Projects / Grid -->
     <section id="projects" class="py-20 px-6 max-w-7xl mx-auto">
       <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {featuredProjects.map(project => (
-          <a href={project.link} target="_blank"
-            class="bg-secondary rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-transform overflow-hidden flex flex-col">
-            <img src={project.image} alt={project.title} class="w-full h-48 object-cover"/>
-            <div class="p-5 flex flex-col flex-1 justify-between">
-              <div>
-                <h3 class="text-2xl font-heading text-text mb-2">{project.title}</h3>
-                <p class="text-text text-sm mb-4">{project.description}</p>
+        {
+          featuredProjects.map((project) => (
+            <a
+              href={project.link}
+              target="_blank"
+              class="bg-secondary rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-transform overflow-hidden flex flex-col"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-5 flex flex-col flex-1 justify-between">
+                <div>
+                  <h3 class="text-2xl font-heading text-text mb-2">
+                    {project.title}
+                  </h3>
+                  <p class="text-text text-sm mb-4">{project.description}</p>
+                </div>
+                <div class="flex justify-between text-sm text-text">
+                  <span>⭐ {project.stars}</span>
+                  <span>🍴 {project.forks}</span>
+                  <span>🕒 {project.updated}</span>
+                </div>
               </div>
-              <div class="flex justify-between text-sm text-text">
-                <span>⭐ {project.stars}</span>
-                <span>🍴 {project.forks}</span>
-                <span>🕒 {project.updated}</span>
-              </div>
-            </div>
-          </a>
-        ))}
+            </a>
+          ))
+        }
 
-        {artstationWorks.map(work => (
-          <a href={work.link} target="_blank"
-            class="bg-secondary rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-transform overflow-hidden flex flex-col">
-            <img src={work.image} alt={work.title} class="w-full h-48 object-cover"/>
-            <div class="p-5 flex flex-col flex-1 justify-between">
-              <h3 class="text-2xl font-heading text-text mb-2">{work.title}</h3>
-            </div>
-          </a>
-        ))}
+        {
+          artstationWorks.map((work) => (
+            <a
+              href={work.link}
+              target="_blank"
+              class="bg-secondary rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-transform overflow-hidden flex flex-col"
+            >
+              <img
+                src={work.image}
+                alt={work.title}
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-5 flex flex-col flex-1 justify-between">
+                <h3 class="text-2xl font-heading text-text mb-2">
+                  {work.title}
+                </h3>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </section>
-
   </body>
 </html>
